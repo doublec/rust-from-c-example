@@ -1,6 +1,5 @@
 #[crate_type = "lib"];
 #[no_std];
-#[no_core];
 #[allow(ctypes)];
 
 #[no_mangle]
