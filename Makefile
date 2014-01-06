@@ -1,11 +1,15 @@
 all: test
 
-mylib.o: mylib.rs
-	rustc -c mylib.rs
+mylib.bc: mylib.rs
+	rustc --emit-llvm mylib.rs	
+
+mylib.o: mylib.bc
+	clang -c mylib.bc
 
 test: test.c mylib.o
-	gcc -o test test.c mylib.o
+	clang -o test test.c mylib.o
 
 clean:
+	rm *.bc
 	rm *.o
 	rm test
